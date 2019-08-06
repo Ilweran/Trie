@@ -9,7 +9,7 @@
 #define TRIE_H_
 
 #include<iostream>
-
+#include <cstring>
 #define CHAR_SIZE 128
 
 
@@ -29,7 +29,7 @@ public:
 	}
 
 	void insertString(std::string);
-	bool inputCommand(std::string);
+//	bool inputCommand(std::string);
 	bool deleteString(Trie*&, std::string);
 	bool searchString(std::string);
 	bool haveChildren(Trie const*);

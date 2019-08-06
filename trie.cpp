@@ -6,6 +6,7 @@
  */
 #include <iostream>
 #include "trie.h"
+using namespace std;
 
 // A Class representing a Trie node
 
@@ -19,9 +20,9 @@ void Trie::insertString(std::string key)
 		// create a new node if path doesn't exists
 		if (curr->character[key[i]] == nullptr)
 			curr->character[key[i]] = new Trie();
-
 		// go to next node
 		curr = curr->character[key[i]];
+		cout << "Inserted character[key[i]] " << character[key[i]] << " at position key[i] " << key[i] << " for index " << i << endl;
 	}
 
 	// mark current node as leaf
