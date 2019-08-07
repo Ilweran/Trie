@@ -21,8 +21,9 @@ void Trie::insertString(std::string key)
 		if (curr->character[key[i]] == nullptr)
 			curr->character[key[i]] = new Trie();
 		// go to next node
-		curr = curr->character[key[i]];
-		cout << "Inserted character[key[i]] " << character[key[i]] << " at position key[i] " << key[i] << " for index " << i << endl;
+		cout << "Inserted key[i]\t\t\t" << key[i] << "\t\t\t" <<
+				" at position key[i]\t\t\t" << int(key[i]) << "\t\t\tfor index\t\t\t" << i << endl;
+  	curr = curr->character[key[i]];
 	}
 
 	// mark current node as leaf

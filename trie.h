@@ -10,7 +10,7 @@
 
 #include<iostream>
 #include <cstring>
-#define CHAR_SIZE 128
+#define CHAR_SIZE 26
 
 
 class Trie
