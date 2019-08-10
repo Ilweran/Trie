@@ -10,29 +10,31 @@
 
 #include<iostream>
 #include <cstring>
-#define CHAR_SIZE 128
+#define CHAR_SIZE 128 //ASCII table
 
 
-class Trie
+class TrieNode
 {
 public:
-	bool isLeaf;
-	Trie* character[CHAR_SIZE];
+	TrieNode* symbol[CHAR_SIZE];
 
 	// Constructor
-	Trie()
+	TrieNode()
 	{
 		this->isLeaf = false;
 
 		for (int i = 0; i < CHAR_SIZE; i++)
-			this->character[i] = nullptr;
+			this->symbol[i] = nullptr;
 	}
-
+	virtual ~TrieNode();
+	bool GetIsLeaf() {return isLeaf;}
 	void insertString(std::string);
 //	bool inputCommand(std::string);
-	bool deleteString(Trie*&, std::string);
+	bool deleteString(TrieNode*&, std::string);
 	bool searchString(std::string);
-	bool haveChildren(Trie const*);
+	bool haveChildren(TrieNode const*);
+private:
+	bool isLeaf;
 };
 
 #endif /* TRIE_H_ */

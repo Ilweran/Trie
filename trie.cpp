@@ -11,19 +11,19 @@ using namespace std;
 // A Class representing a Trie node
 
 // Iterative function to insert a key in the Trie
-void Trie::insertString(std::string key)
+void TrieNode::insertString(std::string key)
 {
 	// start from root node
 	Trie* curr = this;
 	for (int i = 0; i < key.length(); i++)
 	{
 		// create a new node if path doesn't exists
-		if (curr->character[key[i]] == nullptr)
-			curr->character[key[i]] = new Trie();
+		if (curr->symbol[key[i]] == nullptr)
+			curr->symbol[key[i]] = new TrieNode();
 		// go to next node
 		cout << "Inserted key[i]\t\t\t" << key[i] << "\t\t\t" <<
 				" at position key[i]\t\t\t" << int(key[i]) << "\t\t\tfor index\t\t\t" << i << endl;
-  	curr = curr->character[key[i]];
+  	curr = curr->symbol[key[i]];
 	}
 
 	// mark current node as leaf
@@ -32,17 +32,17 @@ void Trie::insertString(std::string key)
 
 // Iterative function to search a key in Trie. It returns true
 // if the key is found in the Trie, else it returns false
-bool Trie::searchString(std::string key)
+bool TrieNode::searchString(std::string key)
 {
 	// return false if Trie is empty
 	if (this == nullptr)
 		return false;
 
-	Trie* curr = this;
+	TrieNode* curr = this;
 	for (int i = 0; i < key.length(); i++)
 	{
 		// go to next node
-		curr = curr->character[key[i]];
+		curr = curr->symbol[key[i]];
 
 		// if string is invalid (reached end of path in Trie)
 		if (curr == nullptr)
@@ -55,17 +55,17 @@ bool Trie::searchString(std::string key)
 }
 
 // returns true if given node has any children
-bool Trie::haveChildren(Trie const* curr)
+bool TrieNode::haveChildren(Trie const* curr)
 {
 	for (int i = 0; i < CHAR_SIZE; i++)
-		if (curr->character[i])
+		if (curr->symbol[i])
 			return true;	// child found
 
 	return false;
 }
 
 // Recursive function to delete a key in the Trie
-bool Trie::deleteString(Trie*& curr, std::string key)
+bool TrieNode::deleteString(TrieNode*& curr, std::string key)
 {
 	// return if Trie is empty
 	if (curr == nullptr)
@@ -78,8 +78,8 @@ bool Trie::deleteString(Trie*& curr, std::string key)
 		// and if it returns true, delete current node (if it is non-leaf)
 
 		if (curr != nullptr &&
-			curr->character[key[0]] != nullptr &&
-			deleteString(curr->character[key[0]], key.substr(1)) &&
+			curr->symbol[key[0]] != nullptr &&
+			deleteString(curr->symbol[key[0]], key.substr(1)) &&
 			curr->isLeaf == false)
 		{
 			if (!haveChildren(curr))
