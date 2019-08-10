@@ -1,3 +1,5 @@
 # ignore compiled binary
 TrieDriver
 *project
+Debug/
+.settings/
