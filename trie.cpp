@@ -14,15 +14,13 @@ using namespace std;
 void TrieNode::insertString(std::string key)
 {
 	// start from root node
-	Trie* curr = this;
+	TrieNode* curr = this;
 	for (int i = 0; i < key.length(); i++)
 	{
-		// create a new node if path doesn't exists
+		// create a new node if path doesn't exist
 		if (curr->symbol[key[i]] == nullptr)
 			curr->symbol[key[i]] = new TrieNode();
 		// go to next node
-		cout << "Inserted key[i]\t\t\t" << key[i] << "\t\t\t" <<
-				" at position key[i]\t\t\t" << int(key[i]) << "\t\t\tfor index\t\t\t" << i << endl;
   	curr = curr->symbol[key[i]];
 	}
 
@@ -55,7 +53,7 @@ bool TrieNode::searchString(std::string key)
 }
 
 // returns true if given node has any children
-bool TrieNode::haveChildren(Trie const* curr)
+bool TrieNode::haveChildren(TrieNode const* curr)
 {
 	for (int i = 0; i < CHAR_SIZE; i++)
 		if (curr->symbol[i])

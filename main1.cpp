@@ -6,7 +6,7 @@
 
 int main()
 {
-        Trie* head = new Trie();
+        TrieNode* head = new TrieNode();
 
         head->insertString("hello");
         std::cout << "\ninvoke searchString(\"hello\"): " << head->searchString("hello") << std::endl;              // print 1
@@ -49,7 +49,7 @@ int main()
         std::cout << std::endl;
 
         if (head == nullptr)
-                std::cout << "Trie empty!!\n";                          // Trie is empty now
+                std::cout << "TrieNode empty!!\n";                          // TrieNode is empty now
 
         std::cout << head->searchString("hell");                              // print 0
 
