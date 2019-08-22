@@ -8,8 +8,26 @@
 #include "trie.h"
 using namespace std;
 
-// A Class representing a Trie node
 
+template< typename NODETYPE > Trie< NODETYPE >::Trie()
+{
+  rootPtr = 0;  //Trie is empty at the beginning
+}
+
+template< typename NODETYPE > void Trie< NODETYPE >::insertNode( const NODETYPE &value )
+{
+  insertNodeHelper( &rootPtr, value);
+}
+
+
+
+
+
+
+
+
+
+/*
 // Iterative function to insert a key in the Trie
 void TrieNode::insertString(std::string key)
 {
@@ -118,4 +136,4 @@ bool TrieNode::deleteString(TrieNode*& curr, std::string key)
 	}
 
 	return false;
-}
+}*/
