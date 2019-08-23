@@ -22,4 +22,21 @@ private:
   void preOrderHelper( TrieNode< NODETYPE> * ) const;
 };
 
+template< typename NODETYPE > Trie< NODETYPE >::Trie()
+{
+  rootPtr = 0;  //Trie is empty at the beginning
+}
+
+template< typename NODETYPE > void Trie< NODETYPE >::insertNode( const NODETYPE &value )
+{
+  insertNodeHelper( &rootPtr, value);
+}
+
+
+
+
+
+
+
+
 #endif /* TRIE_H_ */
