@@ -4,7 +4,7 @@
  *  Created on: Aug 4, 2019
  *      Author: Ilweran
  */
-#include "trie.h"
+#include "Trie.h"
 
 #include <iostream>
 #include <string>

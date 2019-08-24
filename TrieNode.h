@@ -15,7 +15,7 @@ public:
   TrieNode()
   {
     for ( int i = 0; i < ALPHABET_SIZE; i++)
-      symbol[i] = nullptr;
+      letter[i] = nullptr;
     isLeaf = false;
     isWord = false;
   }
@@ -25,7 +25,7 @@ public:
   has to be done to delete current node and not loose
   pointers to other possible ancestors of it*/
 private:
-  TrieNode * symbol[ALPHABET_SIZE];
+  TrieNode * letter[ALPHABET_SIZE];
   bool isWord;
   bool isLeaf;
 };
