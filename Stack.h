@@ -2,7 +2,7 @@
  * Stack.h
  *
  *  Created on: Aug 23, 2019
- *      Author: eugene
+ *      Author: Ilweran
  */
 
 #ifndef STACK_H_

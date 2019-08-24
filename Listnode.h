@@ -15,10 +15,12 @@ public:
 private:
   NODETYPE data;
   ListNode< NODETYPE > *nextPtr;        //Next node in the list
+  ListNode< NODETYPE > *prvsPtr;        //Previous node in the list
 };
 
 //Constructor
-template< typename NODETYPE > ListNode< NODETYPE >::ListNode( const NODETYPE &info ) : data( info ), nextPtr( 0 )
+template< typename NODETYPE > ListNode< NODETYPE >::ListNode( const NODETYPE &info )
+    : data( info ), nextPtr( 0 ), prvsPtr( 0 )
 {
   //Empty body
 }
@@ -28,9 +30,5 @@ template< typename NODETYPE > NODETYPE ListNode< NODETYPE >::getData() const
 {
   return data;
 }
-
-
-
-
 
 #endif //LISTNODE_H

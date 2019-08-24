@@ -2,7 +2,7 @@
  * trie.h
  *
  *  Created on: Aug 3, 2019
- *      Author: eugene
+ *      Author: Ilweran
  */
 
 #ifndef TRIE_H_
@@ -16,12 +16,11 @@ public:
   Trie();
   ~Trie();
   void insertNode( const TrieNode & );
-  void preOrderTraversal() const;
+  void dfs() const;
 private:
   TrieNode *rootPtr;
   TrieNode *leafPtr;
-  void insertNodeHelper( TrieNode**, const TrieNode & );
-  void preOrderHelper( TrieNode * ) const;
+  unsigned int longestWord;
 };
 
 #endif /* TRIE_H_ */

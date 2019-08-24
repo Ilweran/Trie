@@ -2,7 +2,7 @@
  * Queue.h
  *
  *  Created on: Aug 23, 2019
- *      Author: eugene
+ *      Author: Ilweran
  */
 
 #ifndef QUEUE_H_

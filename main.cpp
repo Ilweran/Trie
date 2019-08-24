@@ -2,7 +2,7 @@
  * main.cpp
  *
  *  Created on: Aug 4, 2019
- *      Author: eugene
+ *      Author: Ilweran
  */
 #include "trie.h"
 

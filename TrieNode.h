@@ -1,9 +1,9 @@
 #ifndef TRIENODE_H
 #define TRIENODE_H
 
-const unsigned int ALPHABET_SIZE = 128;
+const unsigned int ALPHABET_SIZE = 26; //Lowercase English letters
 
-//Leading declaration of class Trie
+//Forward declaration of class Trie
 class Trie;
 
 //Definition of TrieNode template
@@ -19,8 +19,11 @@ public:
     isLeaf = false;
     isWord = false;
   }
-  ~TrieNode();    //To be defined later
-
+  /*There is no destructor inside TrieNode definition
+  since a TrieNode can't know how to delete itself properly,
+  only the structure that holds the node can see what
+  has to be done to delete current node and not loose
+  pointers to other possible ancestors of it*/
 private:
   TrieNode * symbol[ALPHABET_SIZE];
   bool isWord;
