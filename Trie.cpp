@@ -5,16 +5,16 @@
  *      Author: eugene
  */
 #include <iostream>
-#include "trie.h"
+#include "Trie.h"
 using namespace std;
 
 
-template< typename NODETYPE > Trie< NODETYPE >::Trie()
+Trie::Trie()
 {
   rootPtr = 0;  //Trie is empty at the beginning
 }
 
-template< typename NODETYPE > void Trie< NODETYPE >::insertNode( const NODETYPE &value )
+void Trie::insertNode( const TrieNode &value )
 {
   insertNodeHelper( &rootPtr, value);
 }

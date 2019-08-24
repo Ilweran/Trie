@@ -10,33 +10,18 @@
 
 #include"TrieNode.h"
 
-template< typename NODETYPE > class Trie
+class Trie
 {
 public:
   Trie();
-  void insertNode( const NODETYPE & );
+  ~Trie();
+  void insertNode( const TrieNode & );
   void preOrderTraversal() const;
 private:
-  TrieNode< NODETYPE > *rootPtr;
-  void insertNodeHelper( TrieNode< NODETYPE >**, const NODETYPE & );
-  void preOrderHelper( TrieNode< NODETYPE> * ) const;
+  TrieNode *rootPtr;
+  TrieNode *leafPtr;
+  void insertNodeHelper( TrieNode**, const TrieNode & );
+  void preOrderHelper( TrieNode * ) const;
 };
-
-template< typename NODETYPE > Trie< NODETYPE >::Trie()
-{
-  rootPtr = 0;  //Trie is empty at the beginning
-}
-
-template< typename NODETYPE > void Trie< NODETYPE >::insertNode( const NODETYPE &value )
-{
-  insertNodeHelper( &rootPtr, value);
-}
-
-
-
-
-
-
-
 
 #endif /* TRIE_H_ */

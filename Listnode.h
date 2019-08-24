@@ -24,7 +24,7 @@ template< typename NODETYPE > ListNode< NODETYPE >::ListNode( const NODETYPE &in
 }
 
 //Return a copy for data in the node
-template< typename NODETYPE > NODETYPE ListNode< NODETYPE >:: getData() const
+template< typename NODETYPE > NODETYPE ListNode< NODETYPE >::getData() const
 {
   return data;
 }
