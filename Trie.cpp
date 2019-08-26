@@ -11,94 +11,104 @@ using namespace std;
 
 Trie::Trie()
 {
-  rootPtr = 0;  //Trie is empty at the beginning
+  rootPtr = nullptr;  //Trie is empty at the beginning
+  lastPtr = nullptr; //:
+  /*Pointer to the dummy TrieNode which serves as the last object
+  which is being pointed at by all leaf TrieNodes. A Trie must create it
+   */
+  markPtr = nullptr;
+  longestWord = 0; //No words, no knowledge
 }
 
-void Trie::insertNode( const TrieNode &value )
-{
-  insertNodeHelper( &rootPtr, value);
-}
-
-
-
-
-
-
-
-
-
-/*
 // Iterative function to insert a key in the Trie
-void TrieNode::insertString(std::string key)
+void Trie::insertString(string key)
 {
-	// start from root node
-	TrieNode* curr = this;
-	for (int i = 0; i < key.length(); i++)
+  //Check if Trie is empty and create the top TrieNode if it is
+  if ( rootPtr == nullptr )
+    rootPtr = new TrieNode;
+
+	// Now when Trie is not empty let's start inserting a string from root node
+	TrieNode* curr = rootPtr;
+	for (unsigned short int i = 0; i < key.length(); i++)
 	{
 		// create a new node if path doesn't exist
-		if (curr->symbol[key[i]] == nullptr)
-			curr->symbol[key[i]] = new TrieNode();
+		if (curr->TrieNode::letter[key[i]] == nullptr)
+			curr->TrieNode::letter[key[i]] = new TrieNode();
 		// go to next node
-  	curr = curr->symbol[key[i]];
+  	curr = curr->TrieNode::letter[key[i]];
 	}
 
 	// mark current node as leaf
-	curr->isLeaf = true;
+	curr->TrieNode::setIsLeaf();
 }
 
 // Iterative function to search a key in Trie. It returns true
 // if the key is found in the Trie, else it returns false
-bool TrieNode::searchString(std::string key)
+bool Trie::searchString(string key)
 {
 	// return false if Trie is empty
-	if (this == nullptr)
+	if (rootPtr == nullptr)
 		return false;
 
-	TrieNode* curr = this;
-	for (int i = 0; i < key.length(); i++)
+	TrieNode* curr = rootPtr;
+	for (unsigned short int i = 0; i < key.length(); i++)
 	{
 		// go to next node
-		curr = curr->symbol[key[i]];
+		curr = curr->TrieNode::letter[key[i]];
 
 		// if string is invalid (reached end of path in Trie)
 		if (curr == nullptr)
 			return false;
 	}
-
-	// if current node is a leaf and we have reached the
-	// end of the string, return true
-	return curr->isLeaf;
+	// if current node is a leaf then we have reached the
+	// end of the string, set markPtr and return true
+	if ( curr->TrieNode::getIsLeaf() )
+	{
+	  markPtr = curr;
+	  return true;
+	}
 }
 
 // returns true if given node has any children
-bool TrieNode::haveChildren(TrieNode const* curr)
+bool Trie::haveChildren(TrieNode * curr)
 {
-	for (int i = 0; i < CHAR_SIZE; i++)
-		if (curr->symbol[i])
-			return true;	// child found
+	for (unsigned short int i = 0; i < ALPHABET_SIZE; i++)
+		if (curr->getNextNode(i) != nullptr)
+			return true;	// A child found
+	return false;     //Childless :(
+}
 
-	return false;
+bool Trie::deleteNode(string prefix)
+{
+  if ( Trie::rootPtr == nullptr )
+    return false;
+  if (Trie::searchString(prefix))
+  {
+    delete Trie::markPtr;
+    Trie::markPtr = nullptr;
+  }
+  return true;
 }
 
 // Recursive function to delete a key in the Trie
-bool TrieNode::deleteString(TrieNode*& curr, std::string key)
+bool Trie::deleteString(TrieNode * curr, string str)
 {
 	// return if Trie is empty
-	if (curr == nullptr)
+	if (rootPtr == nullptr)
 		return false;
-
-	// if we have not reached the end of the key
-	if (key.length())
+	curr = rootPtr;
+	// While we have not reached the end of the key
+	if (str.length())
 	{
-		// recur for the node corresponding to next character in the key
+		// Recur for the node corresponding to next character in the key
 		// and if it returns true, delete current node (if it is non-leaf)
 
 		if (curr != nullptr &&
-			curr->symbol[key[0]] != nullptr &&
-			deleteString(curr->symbol[key[0]], key.substr(1)) &&
-			curr->isLeaf == false)
+			curr->TrieNode::getNextNode(str[0]) != nullptr &&
+			deleteString(curr->getNextNode(str[0]), str.substr(1)) &&
+			curr->TrieNode::getIsLeaf() == false)
 		{
-			if (!haveChildren(curr))
+			if (!Trie::haveChildren(curr))
 			{
 				delete curr;
 				curr = nullptr;
@@ -111,10 +121,10 @@ bool TrieNode::deleteString(TrieNode*& curr, std::string key)
 	}
 
 	// if we have reached the end of the key
-	if (key.length() == 0 && curr->isLeaf)
+	if (str.length() == 0 && curr->getIsLeaf())
 	{
 		// if current node is a leaf node and don't have any children
-		if (!haveChildren(curr))
+		if (!Trie::haveChildren(curr))
 		{
 			// delete current node
 			delete curr;
@@ -128,7 +138,7 @@ bool TrieNode::deleteString(TrieNode*& curr, std::string key)
 		else
 		{
 			// mark current node as non-leaf node (DON'T DELETE IT)
-			curr->isLeaf = false;
+			curr->setIsLeaf(false);
 
 			// don't delete its parent nodes
 			return false;
@@ -136,4 +146,4 @@ bool TrieNode::deleteString(TrieNode*& curr, std::string key)
 	}
 
 	return false;
-}*/
+}
