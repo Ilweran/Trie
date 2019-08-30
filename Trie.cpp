@@ -156,7 +156,11 @@ void Trie::dfs() const
   for(unsigned short int i = 0; i < ALPHABET_SIZE; i++)
   {
     if ( TrieNode::letter[i] != nullptr )
+    {
       word += (char)i;
+      if ( longestWord < word.length() )
+        longestword = word.length();
+    }
   }
 }
 
