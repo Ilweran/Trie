@@ -2,39 +2,35 @@
  * trie.h
  *
  *  Created on: Aug 3, 2019
- *      Author: eugene
+ *      Author: Ilweran
  */
 
 #ifndef TRIE_H_
 #define TRIE_H_
 
 #include<iostream>
-#include <cstring>
-#define CHAR_SIZE 128 //ASCII table
+#include <string>
+#include "trienode.h"
+using namespace std;
 
-
-class TrieNode
+class Trie
 {
 public:
-	TrieNode* symbol[CHAR_SIZE];
+  Trie()
+  {
+    root = new TrieNode();
+    dummy = new TrieNode();
+  }
 
-	// Constructor
-	TrieNode()
-	{
-		this->isLeaf = false;
+  ~Trie()
+  {
+    
+  }
 
-		for (int i = 0; i < CHAR_SIZE; i++)
-			this->symbol[i] = nullptr;
-	}
-	virtual ~TrieNode();
-	bool GetIsLeaf() {return isLeaf;}
-	void insertString(std::string);
-//	bool inputCommand(std::string);
-	bool deleteString(TrieNode*&, std::string);
-	bool searchString(std::string);
-	bool haveChildren(TrieNode const*);
 private:
-	bool isLeaf;
+  TrieNode* root;
+  TrieNode* dummy;
 };
+
 
 #endif /* TRIE_H_ */
